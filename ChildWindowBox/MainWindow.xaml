@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChildWindowBox"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -11,9 +12,23 @@
     <Window.DataContext>
         <local:ViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <system:String x:Key="DateStringFormatKey">yy/MM/dd H:mm:ss</system:String>
+    </Window.Resources>
     <Border BorderBrush="Blue" BorderThickness="5">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="{Binding Name}" />
+            <ListView>
+                <ListView.ItemsSource>
+                    <Binding Mode="OneWay"
+                             Path="Empty"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:CollectionNotEmptyValidationRule ErrorMessage="Collection cannot be empty" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ListView.ItemsSource>
+            </ListView>
             <Button Click="ButtonBase_OnClick" Content="Open window" />
         </StackPanel>
     </Border>

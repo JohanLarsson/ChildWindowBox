@@ -17,6 +17,8 @@ namespace ChildWindowBox
             var window = new Window
             {
                 Content = this.DataContext,
+                Owner = Window.GetWindow(this),
+                SizeToContent = SizeToContent.WidthAndHeight
             };
             window.ShowDialog();
         }
