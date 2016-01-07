@@ -18,7 +18,7 @@
     <Border BorderBrush="Blue" BorderThickness="5">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="{Binding Name}" />
-            <ListView>
+            <ListView MinHeight="20">
                 <ListView.ItemsSource>
                     <Binding Mode="OneWay"
                              Path="Strings"
@@ -30,7 +30,7 @@
                 </ListView.ItemsSource>
             </ListView>
 
-            <ListView ItemsSource="{Binding Strings}">
+            <ListView MinHeight="20" ItemsSource="{Binding Strings}">
                 <local:MinValidationRule.AssertMin>
                     <Binding Path="Strings.Count">
                         <Binding.ValidationRules>
