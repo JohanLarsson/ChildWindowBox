@@ -14,7 +14,10 @@ namespace ChildWindowBox
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var window = new Window { Content = new ContentView(), DataContext = this.DataContext };
+            var window = new Window
+            {
+                Content = this.DataContext,
+            };
             window.ShowDialog();
         }
     }
