@@ -21,7 +21,7 @@
             <ListView>
                 <ListView.ItemsSource>
                     <Binding Mode="OneWay"
-                             Path="Empty"
+                             Path="Strings"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <local:CollectionNotEmptyValidationRule ErrorMessage="Collection cannot be empty" />
@@ -29,7 +29,18 @@
                     </Binding>
                 </ListView.ItemsSource>
             </ListView>
-            <Button Click="ButtonBase_OnClick" Content="Open window" />
+
+            <ListView ItemsSource="{Binding Strings}">
+                <local:MinValidationRule.AssertMin>
+                    <Binding Path="Strings.Count">
+                        <Binding.ValidationRules>
+                            <local:MinValidationRule ErrorMessage="Collection must have at least one item" Min="1" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </local:MinValidationRule.AssertMin>
+            </ListView>
+            <Button Click="OnAddItemClick" Content="Add" />
+            <Button Click="OnRemoveItemClick" Content="Remove" />
         </StackPanel>
     </Border>
 </Window>

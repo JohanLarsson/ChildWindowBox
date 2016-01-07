@@ -9,6 +9,6 @@ namespace ChildWindowBox
         public DateTime Begin { get; } = DateTime.Now.AddDays(-4);
         public DateTime End { get; } = DateTime.Now;
 
-        public ObservableCollection<string> Empty { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Strings { get; } = new ObservableCollection<string>();
     }
 }

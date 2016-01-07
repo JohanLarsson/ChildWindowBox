@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 namespace ChildWindowBox
 {
@@ -12,15 +13,20 @@ namespace ChildWindowBox
             InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void OnAddItemClick(object sender, RoutedEventArgs e)
         {
-            var window = new Window
+            var viewModel = (ViewModel)DataContext;
+            viewModel.Strings.Add(viewModel.Strings.Count.ToString());
+        }
+
+        private void OnRemoveItemClick(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ViewModel)DataContext;
+            if (viewModel.Strings.Count > 0)
             {
-                Content = this.DataContext,
-                Owner = Window.GetWindow(this),
-                SizeToContent = SizeToContent.WidthAndHeight
-            };
-            window.ShowDialog();
+                viewModel.Strings.RemoveAt(viewModel.Strings.Count - 1);
+
+            }
         }
     }
 }
